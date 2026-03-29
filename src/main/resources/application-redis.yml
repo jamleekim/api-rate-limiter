@@ -1,0 +1,8 @@
+rate-limit:
+  storage-type: REDIS
+
+spring:
+  data:
+    redis:
+      host: localhost
+      port: 6379
