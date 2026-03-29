@@ -5,6 +5,7 @@ import jaemin.ai.ratelimiter.resolver.ClientKeyResolver;
 import jaemin.ai.ratelimiter.storage.InMemoryRateLimitStorage;
 import jaemin.ai.ratelimiter.storage.RateLimitStorage;
 import jaemin.ai.ratelimiter.storage.RedisRateLimitStorage;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -34,7 +35,7 @@ public class RateLimitAutoConfiguration {
             RateLimitStorage storage,
             RateLimitProperties properties,
             ClientKeyResolver keyResolver,
-            RequestMappingHandlerMapping handlerMapping) {
+            @Qualifier("requestMappingHandlerMapping") RequestMappingHandlerMapping handlerMapping) {
         return new RateLimitFilter(storage, properties, keyResolver, handlerMapping);
     }
 }
